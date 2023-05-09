@@ -121,10 +121,12 @@ namespace SnakeGame
         
         void Move(Vector2 currentMovement)
         {
-            if(DontAllowOppositeMovement(_lastMovement, currentMovement) || !_canMove) return;
+            if(!_canMove) return;
+
+            Vector2 movement = DontAllowOppositeMovement(_lastMovement, currentMovement);
             
             //Head Rotation
-            HeadAngle?.Invoke(_headDirection[currentMovement]);
+            HeadAngle?.Invoke(_headDirection[movement]);
             
             //segment movement
             for (int i = segments.Count - 1; i > 0; i--)
@@ -132,14 +134,14 @@ namespace SnakeGame
 
             //movement
             Vector3 position = transform.position;
-            float x = Mathf.Round(position.x) + currentMovement.x;
-            float y = Mathf.Round(position.y) + currentMovement.y;
+            float x = Mathf.Round(position.x) + movement.x;
+            float y = Mathf.Round(position.y) + movement.y;
 
             position = new Vector2(x, y);
             transform.position = position;
             
             //last movement
-            _lastMovement = currentMovement;
+            _lastMovement = movement;
         }
         
         private void RequestMovement(Vector2 movement) => _requestedMovement = movement;
@@ -185,13 +187,13 @@ namespace SnakeGame
             SnakeLose?.Invoke();
         }
         
-        bool DontAllowOppositeMovement(Vector2 lastMovement, Vector2 currentMovement)
+        Vector2 DontAllowOppositeMovement(Vector2 lastMovement, Vector2 currentMovement)
         {
-            if (lastMovement == Vector2.right && currentMovement == Vector2.left) return true;
-            if (lastMovement == Vector2.left && currentMovement == Vector2.right) return true;
-            if (lastMovement == Vector2.up && currentMovement == Vector2.down) return true;
-            if (lastMovement == Vector2.down && currentMovement == Vector2.up) return true;
-            return false;
+            if (lastMovement == Vector2.right && currentMovement == Vector2.left) return lastMovement;
+            if (lastMovement == Vector2.left && currentMovement == Vector2.right) return lastMovement;
+            if (lastMovement == Vector2.up && currentMovement == Vector2.down) return lastMovement;
+            if (lastMovement == Vector2.down && currentMovement == Vector2.up) return lastMovement;
+            return currentMovement;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
