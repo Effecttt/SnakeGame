@@ -2,7 +2,7 @@
 This is a simple snake game built using Unity. The goal of the game is to control the snake and eat as many apples as possible without crashing into the walls or the snake's own body.
 
 # Installation
-To play the game, you can access it in my [Itch.io page](https://lucas-efeito.itch.io/snake-game)
+To play the game, access it on my [Itch.io page](https://lucas-efeito.itch.io/snake-game)
 
 # How to Play
 Use the WASD keys to control the direction of the snake. The snake will move automatically, so you need to be quick to avoid crashing into the walls or the snake's own body. Each time the snake eats an apple, it will grow longer.
