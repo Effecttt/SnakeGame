@@ -1,7 +1,10 @@
 # Unity Snake Game
 This is a simple snake game built using Unity. The goal of the game is to control the snake and eat as many apples as possible without crashing into the walls or the snake's own body.
 
-# Installation
+# Unity Version
+This app was developed in Unity 2021.3.22f1.
+
+# Playing the game
 To play the game, access it on my [Itch.io page](https://lucas-efeito.itch.io/snake-game)
 
 # How to Play
